@@ -3,9 +3,12 @@ cluster:
   privateKey: cluster-key
 machines:
 - count: 3
+  backend: docker
   spec:
-    image: quay.io/footloose/centos7
+    image: aprabhat/kubernetes
     name: node%d
+    privileged: true
+    networks:
+    - footloose-cluster
     portMappings:
     - containerPort: 22
-      hostPort: 2222
